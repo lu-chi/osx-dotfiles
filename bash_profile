@@ -1,17 +1,13 @@
-##
-# aliases - last update 03/10/2014:
-
+################################
+#
 # functions
+#
+################################
 
-get_ip_details() { ifconfig $1 | grep inet | grep -v 'inet6'; }
-reload_profile() { clear; echo "[+] Reloading user profile."; source ~/.bash_profile; }
+function get_ip_details() { ifconfig $1 | grep inet | grep -v 'inet6'; }
+function reload_profile() { clear; echo "[+] Reloading user profile."; source ~/.bash_profile; }
 
-better_rm() {
-# function to create better rm with automated directory structure checkings 
-# and safe file/dir removal
-clear
-
-}
+function better_rm() { exit 0; }
 
 
 #ifme_check() {
@@ -22,18 +18,22 @@ clear
 #}
 
 
-set_proxy() {
+function set_proxy() {
     _url=$1
     export http_proxy=${_url}
     export https_proxy=${_url}
 }
 
 
-genpasswd() {
+function genpasswd() {
     local l=$1
     [ "$l" == "" ] && l=16
     tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
+
+
+################################
+
 
 alias projects='cd ~/projects'
 
@@ -41,11 +41,10 @@ alias nmap_scripts='cd /usr/local/Cellar/nmap/6.47/share/nmap/scripts'
 alias nse='nmap_scripts'
 
 alias httproxy='set_proxy http://0.0.0.0'
+alias ifme='curl icanhazip.com'
 
-alias ifme='curl ifconfig.me'
-#alias ifme='ifme_check'
+# file/directory actions
 
-# local for myself
 alias ls='ls -G'
 alias l='ls -l -G'
 alias ll='l -l -G'
@@ -66,29 +65,23 @@ alias hosts='cat /etc/hosts'
 alias rd='rm -rf'
 
 # tmux stuff
+
 alias tl='tmux ls'
 alias ta='tmux a '
 
 # python
+
 alias ipy='ipython'
 
 # network
+
 alias ipconfig='ifconfig '
 alias ip='get_ip_details '
 
-alias conn='cat ~/.ssh/config'
-alias conne='cat ~/.ssh/config'
-alias connec='cat ~/.ssh/config'
-alias connect='cat ~/.ssh/config'
-alias connecti='cat ~/.ssh/config'
-alias connectio='cat ~/.ssh/config'
-alias connection='cat ~/.ssh/config'
 alias connections='cat ~/.ssh/config'
-
 
 ##################################################
 #
-# 2014/08/25
 # Vagrant shit stuff
 #
 ##################################################
@@ -113,12 +106,12 @@ alias vlist='vbox list'
 
 
 # Python ipython notebook
+
 alias pynb='ipython notebook'
 
 
 ##################################################
 #
-# 2014/08/29
 # homebrew stuff
 #
 ##################################################
@@ -130,7 +123,6 @@ alias bi='brew install '
 
 ##################################################
 #
-# 2014/08/29
 # git stuff
 #
 ##################################################
@@ -157,18 +149,6 @@ alias clone='git clone'
 alias gcom='git commit -m'
 
 ##################################################
-#
-# 2014/08/29
-# network stuff
-#
-##################################################
-
-#alias ip='ifme'
-#alias ipget='ifme'
-
-
-# -*- GIT -*- 
-# removed
 
 
 export PATH=/usr/local/sbin:$PATH
